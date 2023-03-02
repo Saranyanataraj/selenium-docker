@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [search-module]" parallel="tests">
+  <test thread-count="5" name="search-module-test-4(failed)" parallel="tests">
+    <parameter name="keyword" value="automation"/>
+    <classes>
+      <class name="com.searchmodule.test.SearchTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="setUp"/>
+          <include name="searchTest"/>
+        </methods>
+      </class> <!-- com.searchmodule.test.SearchTest -->
+    </classes>
+  </test> <!-- search-module-test-4(failed) -->
+  <test thread-count="5" name="search-module-test-1(failed)" parallel="tests">
+    <parameter name="keyword" value="web driver"/>
+    <classes>
+      <class name="com.searchmodule.test.SearchTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="setUp"/>
+          <include name="searchTest"/>
+        </methods>
+      </class> <!-- com.searchmodule.test.SearchTest -->
+    </classes>
+  </test> <!-- search-module-test-1(failed) -->
+  <test thread-count="5" name="search-module-test-3(failed)" parallel="tests">
+    <parameter name="keyword" value="docker"/>
+    <classes>
+      <class name="com.searchmodule.test.SearchTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="setUp"/>
+          <include name="searchTest"/>
+        </methods>
+      </class> <!-- com.searchmodule.test.SearchTest -->
+    </classes>
+  </test> <!-- search-module-test-3(failed) -->
+  <test thread-count="5" name="search-module-test-2(failed)" parallel="tests">
+    <parameter name="keyword" value="qa"/>
+    <classes>
+      <class name="com.searchmodule.test.SearchTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="setUp"/>
+          <include name="searchTest"/>
+        </methods>
+      </class> <!-- com.searchmodule.test.SearchTest -->
+    </classes>
+  </test> <!-- search-module-test-2(failed) -->
+</suite> <!-- Failed suite [search-module] -->

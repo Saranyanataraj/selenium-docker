@@ -1,0 +1,47 @@
+#Make sure when ever any changes in done to the code the docker image has to be rebuilt and then run else changes wont show up
+
+#create image
+#create Dockerfile and add content
+docker build -t=saranya93/selenium-docker .
+
+#<Inside TestDemoFordocker folder >project main folder
+mvn clean package -DskipTests //this creates selenium-docker.jar & selenium-docker-tests.jar
+
+cd target
+
+java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* org.testng.TestNG ../search-module.xml
+
+java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DBROWSER=firefox org.testng.TestNG ../search-module.xml
+
+docker run -it --entrypoint=/bin/sh -v /Users/saranya/IdeaProjects/TestDemoFordocker/docker-output:/usr/share/udemy/test-output saranya93/docker-selenium
+
+#tried running directing by logging into docker it throws "Caused by: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:4444"
+
+java -cp selenium-docker.jar:selenium-docker-tests.jar:libs/* -DHUB_HOST=192.168.0.170 org.testng.TestNG search-module.xml
+
+#defining the docker parameters present in Dockerfile and running directly from cmdline
+
+docker run -e HUB_HOST=192.168.0.170 -e MODULE=search-module.xml saranya93/selenium-docker
+
+#to run in background with volume mapping
+docker run -d -e HUB_HOST=192.168.0.170 -e MODULE=search-module.xml -v /Users/saranya/IdeaProjects/TestDemoFordocker/docker-output:/usr/share/udemy/test-output saranya93/selenium-docker
+
+#to display the logs
+
+docker logs <container_name>
+
+# to solve empty pool issue check the hub status value for "ready"
+
+curl -s http://localhost:4444/status | jq -r .value.ready
+
+#For filtering the logs based on the services
+docker-compose up | grep -e 'search-module'
+
+
+#this command will remove <none> and unused images
+docker system prune -f
+
+#
+1. mvn clean package -DskipTests
+2. docker build -t=saranya93/selenium-docker .    //uses Dockerfile
+3. docker-compose up                              //used docker-compose.yaml file
